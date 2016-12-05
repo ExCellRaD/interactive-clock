@@ -14,7 +14,7 @@ LED_INVERT = False
 i = 0
 
 while True:
-    for(j in range(LED_COUNT))
+    for j in range(LED_COUNT)
         i+=1
         strip.setPixelColor(j, Color((j+i)%255, (j*i)%255, (i-j)%255)
     strip.show()
