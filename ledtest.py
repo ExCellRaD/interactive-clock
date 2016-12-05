@@ -12,15 +12,14 @@ LED_BRIGHTNESS = 255     # Set to 0 for darkest and 255 for brightest
 LED_INVERT = False
 
 i = 0
-strip = Adafruit_NeoPixel(
-        LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS)
+strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS)
     # Intialize the library (must be called once before other functions).
 strip.begin()
 
 while True:
     for j in range(LED_COUNT):
-        i+=1
-        strip.setPixelColor(j, Color((j+i)%255, (j*i)%255, (i-j)%255)
+        i += 1
+        strip.setPixelColor(j, Color((i)%255, (i*i)%255, (i*j)%255))
     strip.show()
-    time.sleep(0.05)
+    time.sleep(0.1)
     
