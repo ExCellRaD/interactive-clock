@@ -6,6 +6,8 @@ from quickstart import Data
 data = Data();
 data.main();
 
+
+
 ledstrip = Ledstrip()
 
 
