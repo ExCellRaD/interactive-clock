@@ -1,5 +1,5 @@
 import time
-
+import datetime
 from neopixel import *
 
 # LED strip configuration:
@@ -23,3 +23,17 @@ while True:
         strip.setPixelColor(j, Color((j + i) % 255, (j * i) % 255, (i - j) % 255)
         strip.show()
         time.sleep(0.05)
+
+class Led:
+    events = []
+    def setLeds(self, events):
+        self.events = events
+
+
+    def main(self):
+        now = datetime.datetime.utcnow()
+        for event in (self.events):
+            event["startTime"] = 
+
+
+
