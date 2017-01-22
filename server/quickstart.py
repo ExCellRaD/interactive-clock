@@ -51,6 +51,24 @@ class Data:
             print('Storing credentials to ' + credential_path)
         return credentials
 
+
+    def getCalenderList(self):
+        credentials = self.get_credentials()
+        http = credentials.authorize(httplib2.Http())
+        service = discovery.build('calendar', 'v3', http=http)
+        page_token = None
+        while True:
+            calendarList = service.calendarList().list(pageToken=page_token).execute()
+            store = Storage(calendarList);
+            for calendarListName in calendarList['items']:
+                print(calendarListName)
+
+
+            return calendarList
+            page_token = calendarList.get('nextPageToken')
+            if not page_token:
+                break
+
     def main(self):
         """Shows basic usage of the Google Calendar API.
 
@@ -61,12 +79,24 @@ class Data:
         http = credentials.authorize(httplib2.Http())
         service = discovery.build('calendar', 'v3', http=http)
 
+
         now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
         print('Getting the upcoming 10 events')
         eventsResult = service.events().list(
             calendarId='primary', timeMin=now, maxResults=10, singleEvents=True,
             orderBy='startTime').execute()
         events = eventsResult.get('items', [])
+        colors = service.colors().get().execute()
+
+
+        print(events)
+
+
+        for event in events:
+            event["color"] = colors["event"][event["colorId"]]["background"]
+            print(event["color"])
+
+        return  events
 
         if not events:
             print('No upcoming events found.')

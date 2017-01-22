@@ -14,6 +14,19 @@
         background-size: cover;
         back
 }
+  .big{
+      font-size: 50px;
+      margin-top: 100px;
+  }
+
+  .afspraak{
+    border: 2px solid white;
+    padding: 10px;
+
+    }
+    p{
+    text-align: center;
+    }
 </style>
 
 
@@ -22,17 +35,32 @@
 
 <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
   <div class="w3-display-topleft w3-padding-large w3-xlarge">
-    Logo
+    {{ title }}
   </div>
   <div class="w3-display-middle">
-    <h1 class="w3-jumbo w3-animate-top">COMING SOON</h1>
+    <h1 class="big w3-animate-top">Project Video & Audio Productions</h1>
     <hr class="w3-border-grey" style="margin:auto;width:40%">
-    <p class="w3-large w3-center">Project Video & Audio Productions</p>
-  </div>
-  <div class="w3-display-bottomleft w3-padding-large">
-    Powered by <a href="http://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a>
+    <p class="w3-large w3-center">Komende 10 afspraken</p>
+    {% for list in calenderlist["items"] %}
+          <div class="users">
+             <p>Evenementen zien van de {{ list["summary"]}} agenda</p>
+          </div>
+    {% end %}
+       {% for item in items %}
+       <div class="afspraak" style="background-color: {{item["color"]}};">
+          <p>Start Afspraak: {{ item["start"]["dateTime"]}}</p>
+          <p>Einde Afspraak: {{ item["end"]["dateTime"]}}</p>
+          <p>Summary: {{ item["summary"]}}</p>
+          <p>Beschrijving: {{ item["description"]}}</p>
+
+       </div>
+       {% end %}
   </div>
 </div>
 
 </body>
 </html>
+
+
+
+

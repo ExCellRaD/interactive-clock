@@ -1,21 +1,16 @@
 import tornado.ioloop
 import tornado.web
-from strandtest import Ledstrip
 from quickstart import Data
 
-data = Data();
-data.main();
 
-
-
-ledstrip = Ledstrip()
+#ledstrip = Ledstrip()
 
 
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-        items = ["Item 1", "Item 2", "Item 3"]
-        self.render("test.html", title="My Clock", items=items)
+
+        self.render("test.html", title="My Clock" )
 
 if __name__ == "__main__":
     application = tornado.web.Application([
